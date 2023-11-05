@@ -1,0 +1,1 @@
+{"name":"Local: Coin_Combinations_I","url":"/Users/arnav/Documents/Competitive Programming/CSES/Coin_Combinations_I.cpp","tests":[{"id":1699144449411,"input":"3 9\n2 3 5","output":"8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/arnav/Documents/Competitive Programming/CSES/Coin_Combinations_I.cpp","group":"local","local":true}

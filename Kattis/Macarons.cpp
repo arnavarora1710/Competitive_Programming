@@ -33,23 +33,11 @@ Matrix pow(Matrix b, ll n) {
 	return a;
 }
 
-int fib(int n) {
-    int a = 1;
-    int b = 2;
-    for (int i = 0; i < n; i++) {
-        int tmp = a + b;
-        a = b;
-        b = tmp;
-    }
-    return a;
-}
-
 int main() {
     ll m, n; cin >> m >> n;
 	Matrix M = *(new Matrix());
 
-	int fibb[9]; fibb[0] = 1;
-	for (int i = 1; i <= 8; ++i) fibb[i] = fib(i - 1);
+	int fibb[9] = {1, 1, 2, 3, 5, 8, 13, 21, 34};
 
 	for (int i = 0; i < (1 << m); ++i) {
 		for (int j = 0; j < (1 << m); ++j) {

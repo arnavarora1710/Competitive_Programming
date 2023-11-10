@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// check win conditions
+// only 8 of them: up, down and diagonal
 bool checkWin(string& s, char c) {
     int ans = 0;
 
@@ -18,6 +20,10 @@ bool checkWin(string& s, char c) {
 
 int xTurn = 1, oTurn = 2;
 
+// check if board is valid or not
+// both X and O can't have 2 wins simultaneously
+// the count of Xs and Os on the board must be correct
+// return whose turn it is
 int isValid(string& s) {
     int x = 0, o = 0;
 
@@ -39,6 +45,7 @@ int isValid(string& s) {
     }
 }
 
+// memoized recursion to go through all possibilities
 bool x = 1, o = 0;
 map<pair<string, bool>, pair<int, int> > m;
 pair<int, int> rec(string s, bool turn) {
@@ -82,14 +89,19 @@ pair<int, int> rec(string s, bool turn) {
 int main() {
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
+    // recurse through all possibilites starting at an empty board
     rec(".........", xTurn);
 
     int t; cin >> t;
     while (t--) {
         string s; cin >> s;
+
+        // check validity
         if (!isValid(s)) cout << "-1 -1\n";
         else {
             pair<int, int> res = make_pair(0, 0);
+
+            // recurse based on turn
             int turn = isValid(s);
             if (turn == oTurn) {
                 res.first += m[make_pair(s, o)].first; res.second += m[make_pair(s, o)].second;

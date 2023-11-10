@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+typedef vector<ll> vl;
+typedef vector<vl> vll;
 
 int count6and8(ll n) {
     int ans = 0;
@@ -16,11 +18,11 @@ int main() {
     while (t--) {
         ll n; cin >> n;
 
-        vector<ll> num; ll tmp = n; int digs = 0;
+        vl num; ll tmp = n; int digs = 0;
         while (digs < 3 || tmp) num.push_back(tmp % 10), tmp /= 10, digs++;
         reverse(num.begin(), num.end());
 
-        vector<vector<ll>> dp(19, vector<ll>(2)), dp1(19, vector<ll>(2));
+        vll dp(19, vl(2)), dp1(19, vl(2));
 
         dp[0][1] = 1;
         for (int i = 0; i < digs - 3; ++i) {

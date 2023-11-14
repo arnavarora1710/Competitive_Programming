@@ -18,3 +18,6 @@ int main() {
     for (auto& v : a) cout << v << " ";
     return 0;
 }
+
+// bonus : solve for length of subsequence for n <= 1e12
+// https://codeforces.com/blog/entry/89810?#comment-782069

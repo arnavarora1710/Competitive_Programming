@@ -75,12 +75,6 @@ int main() {
 
 	// take n timesteps
 	M = pow(M, n);
-
-	// init state is all 0s
-	Matrix v = *(new Matrix());
-	v.mat[0][0] = 1;
-	
-	M = v * M;
 	cout << M.mat[0][0] % MOD;
 
     return 0;

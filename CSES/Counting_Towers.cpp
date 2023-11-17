@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int MOD = 1e9 + 7;
-const int MAXN = 1e6 + 1;
+const int MOD = 1e9 + 7, MAXN = 1e6 + 1;
 long dp[MAXN], dp1[MAXN];
 
 int main() {

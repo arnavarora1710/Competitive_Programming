@@ -1,3 +1,4 @@
+// https://codeforces.com/contest/1901/problem/A
 #include <bits/stdc++.h>
 using namespace std;
 const int MAXN = 50;

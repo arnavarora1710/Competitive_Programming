@@ -2,42 +2,91 @@
 using namespace std;
 typedef long long ll;
 const int MAXM = 256;
-const int MOD = 1e9;
+#define rep(i, a, b) for (int i = (a); i < (b); ++i) 
+#define rep0(i, b) for (int i = 0; i < (b); ++i)
+#define ll long long
+#define sz(x) ((int) (x).size())
+template <typename T> using V = vector<T>;
+template <typename T> using VV = V<vector<T>>;
 
-// matrix template
-class Matrix {
-public:
-	ll mat[MAXM][MAXM];
+// Matrix struct
+typedef __int128 T;
+T mod = 1e9;
+struct M {
+    // internal matrix
+    VV<T> a;
+    // matrix size
+    int n;
+    // grid initializer
+    M(VV<T>& x) : a(x), n(sz(x)) {}
+    // identity initializer
+    M(int n): a(VV<T>(n, V<T>(n, 0))), n(n) {
+        rep0(i, n) a[i][i] = 1;
+    }
 
-	Matrix() {
-		memset(mat, 0, sizeof(ll) * MAXM * MAXM);
-	}
+    // * operator - basic n^3 matrix mult
+    M operator*(M& o) {
+        VV<T> ret(n, V<T>(n));
+        // cache-optimized version of matrix mult - ~2x faster than naive i,j,k
+        rep0(i, n) {
+            rep0(k, n) {
+                rep0(j, n) {
+                    // If you can afford to not mod every time, it's decently fast
+                    ret[i][j] = (ret[i][j] + a[i][k] * o.a[k][j]); 
+                }
+            }
+        }
+        rep0(i, n) rep0(j, n) ret[i][j] %= mod;
+        return M(ret);
+    } 
 
-	Matrix operator*(Matrix m) {
-		Matrix a = *(new Matrix());
-		for (int k = 0; k < MAXM; ++k) 
-			for (int i = 0; i < MAXM; ++i)
-				for (int j = 0; j < MAXM; ++j) 
-					a.mat[i][j] = (a.mat[i][j] + mat[i][k] * m.mat[k][j]) % MOD;
-		return a;
-	}
+    // + operator - pairwise addition
+    M operator+(M& o) {
+        VV<T> ret(n, V<T>(n));
+        rep0(i, n) rep0(j, n) ret[i][j] = (a[i][j] + o.a[i][j]) % mod;
+        return ret;
+    }
+
+    // Mod the entire matrix by mod
+    M operator%(T m) {
+        rep0(i, n) {
+            rep0(j, n) {
+                a[i][j] %= m;
+            }
+        }
+        return *this;
+    }
+
+    // * operator for vector multiplication (Ab)
+    V<T> operator*(V<T>& b) {
+        V<T> ret(n);
+        rep0(i, n) {
+            T sum = 0;
+            rep0(j, n) {
+                sum += a[i][j] * b[j];
+            }
+            ret[i] = sum % mod;
+        }
+        return ret;
+    } 
+
+    // Binary exponentiation, with matrices instead of scalars
+    M operator^(ll p) {
+        M x(a);
+        // x = x % mod;  // note: m * m must be less than 2^63 to avoid ll overflow
+        M res(n);
+        while (p) {
+            if (p & 1) { res = res * x; }
+            x = x * x;
+            p >>= 1;
+        }
+        return res;
+    }
 };
-
-// matrix exponentiation
-Matrix pow(Matrix b, ll n) {
-	Matrix a = *(new Matrix());
-	for (int i = 0; i < MAXM; ++i) a.mat[i][i] = 1;
-	while (n) {
-		if (n&1) a = a * b;
-		b = b * b;
-		n >>= 1;
-	}
-	return a;
-}
 
 int main() {
     ll m, n; cin >> m >> n;
-	Matrix M = *(new Matrix());
+	VV<T> mat(1<<m, V<T>(1<<m));
 
 	// init fibonacci array
 	int fibb[9] = {1, 1, 2, 3, 5, 8, 13, 21, 34};
@@ -60,22 +109,23 @@ int main() {
 					shouldBeZero = 1; break;
 				}
 				else if (topbit ^ bit) {
-					ways = (ways * fibb[ct]) % MOD; ct = 0;
+					ways = (ways * fibb[ct]) % mod; ct = 0;
 				}
 				else ct++;
 			}
 
 			// final multiply
-			ways = (ways * fibb[ct]) % MOD;
+			ways = (ways * fibb[ct]) % mod;
 
 			// init matrix dp state
-			M.mat[i][j] = shouldBeZero ? 0 : ways;
+			mat[i][j] = shouldBeZero ? 0 : ways;
 		}
 	}
-
+	
+	M matr = *(new M(mat));
 	// take n timesteps
-	M = pow(M, n);
-	cout << M.mat[0][0] % MOD;
+	matr = matr ^ n;
+	cout << (ll) (matr.a[0][0] % mod);
 
     return 0;
 }

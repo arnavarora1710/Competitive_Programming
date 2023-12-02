@@ -4,7 +4,6 @@ typedef long long ll;
 const int MAXM = 256;
 #define rep(i, a, b) for (int i = (a); i < (b); ++i) 
 #define rep0(i, b) for (int i = 0; i < (b); ++i)
-#define ll long long
 #define sz(x) ((int) (x).size())
 template <typename T> using V = vector<T>;
 template <typename T> using VV = V<vector<T>>;

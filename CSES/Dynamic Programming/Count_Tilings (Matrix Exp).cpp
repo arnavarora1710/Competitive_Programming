@@ -46,20 +46,16 @@ int main() {
     N1 = 1<<N;
 	for (int i = 0; i < (1 << N); ++i) {
 		for (int j = 0; j < (1 << N); ++j) {
-			int num1 = i, num2 = j, ct = 0;
-			uint ways = 1; bool shouldBeZero = 0;
+			int ct = 0, ways = 1;
 			for (int k = N - 1; k >= 0; --k) {
-				int bit = (num1>>k)&1, topbit = (num2>>k)&1;
-				if (topbit && bit) {
-					shouldBeZero = 1; break;
-				}
-				else if (topbit ^ bit) {
-					ways = (ways * !(ct&1)) % MOD; ct = 0;
-				}
+                if (!ways) break;
+				int bit = (i>>k)&1, topbit = (j>>k)&1;
+				if (topbit && bit) ways = 0;
+				else if (topbit ^ bit) ways = !(ct&1), ct = 0;
 				else ct++;
 			}
-			ways = (ways * !(ct&1)) % MOD;
-			mat[(i<<N)|j] = shouldBeZero ? 0 : ways;
+			if (ways) ways = !(ct&1);
+			mat[(i<<N)|j] = ways;
 		}
 	}
 

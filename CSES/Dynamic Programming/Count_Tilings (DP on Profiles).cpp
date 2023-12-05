@@ -31,3 +31,21 @@ int main() {
     cout << dp[m][0];
     return 0;
 }
+
+// Used O(1) bit magic compatibility function
+// O(log n) trivial function:
+// bool comp(int p, int q) {
+//     int ct = 0;
+//     for (int _ = 0; _ < n; ++_) {
+//         int bit = p&1, topbit = q&1;
+//         if (bit && topbit) return false;
+//         else if (topbit ^ bit) {
+//             if (ct&1) return false;
+//             ct = 0;
+//         } 
+//         else ct++;
+//         p >>= 1, q >>= 1; 
+//     }
+//     if (ct&1) return false;
+//     else return true;
+// }

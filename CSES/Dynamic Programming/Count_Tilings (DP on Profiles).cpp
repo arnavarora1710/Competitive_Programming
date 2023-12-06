@@ -15,19 +15,14 @@ bool comp(int p, int q) {
 int main() {
     cin >> n >> m;
     vector<vector<int>> compatible(1 << n);
-    for (int j = 0; j < (1 << n); ++j) {
-        for (int k = 0; k < (1 << n); ++k) {
+    for (int j = 0; j < (1 << n); ++j)
+        for (int k = 0; k < (1 << n); ++k)
             if (comp(j, k)) compatible[j].push_back(k);
-        }
-    }
     vector<vector<int>> dp(m + 1, vector<int>(1 << n)); dp[0][0] = 1;
-    for (int i = 0; i < m; ++i) {
-        for (int j = 0; j < (1 << n); ++j) {
-            for (int k : compatible[j]) {
+    for (int i = 0; i < m; ++i)
+        for (int j = 0; j < (1 << n); ++j)
+            for (int k : compatible[j])
                 dp[i + 1][k] = (dp[i + 1][k] + dp[i][j]) % MOD;
-            }
-        }
-    }
     cout << dp[m][0];
     return 0;
 }

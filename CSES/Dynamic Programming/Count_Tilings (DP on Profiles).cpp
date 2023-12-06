@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int MOD = 1e9 + 7;
-int n, m; 
+int n, m;
+// dp(i, profile) : number of ways to fill the first i columns with profile sticking out
 
 bool comp(int p, int q) {
     if (p&q) return false;

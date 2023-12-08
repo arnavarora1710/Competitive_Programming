@@ -2,7 +2,7 @@
 using namespace std;
 const int MAXN = 1000;
 int n, m, dx[] = {-1, 0, 1}, dy[] = {-1, 0, 1};
-char a[MAXN][MAXN]; bool vis[MAXN][MAXN]; vector<pair<int, int>> idx;
+string a[MAXN]; bool vis[MAXN][MAXN]; vector<pair<int, int>> idx;
 
 bool isValid(int x, int y) {
     return (x >= 0) && (y >= 0) && (x < n) && (y < m);

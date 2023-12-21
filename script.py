@@ -18,15 +18,17 @@ signed main() {
     i = -1
     cnt = 0
     idx = 0
-    while cnt != 3:
+    while cnt != 2:
         if (link[i] == '/'):
             cnt+=1
-            if cnt == 2:
+            if cnt == 1:
                 idx = i
         i-=1
     i+=2
     problemNumber = link[i:idx]
     problemLetter = link[-1]
+    if (link[-1] >= '0' and link[-1] <= '9'):
+        problemLetter = link[-2] + link[-1]
     filepath = './Codeforces/' + problemNumber + problemLetter + '.cpp'
     file = open(filepath, 'w')
     file.write(template)

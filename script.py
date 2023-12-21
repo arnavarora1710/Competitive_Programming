@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, subprocess
 
 n = len(sys.argv)
 if (n > 2):
@@ -27,5 +27,8 @@ signed main() {
     i+=2
     problemNumber = link[i:idx]
     problemLetter = link[-1]
-    file = open('./Codeforces/' + problemNumber + problemLetter + '.cpp', 'w')
+    filepath = './Codeforces/' + problemNumber + problemLetter + '.cpp'
+    file = open(filepath, 'w')
     file.write(template)
+    file.close()
+    subprocess.run(['code', filepath])

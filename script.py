@@ -8,7 +8,6 @@ elif (n < 3):
 else:
     templateFile = open("./template.cpp")
     template = templateFile.read()
-    print(template)
     type = sys.argv[2]
     link = sys.argv[1]
     i = -1

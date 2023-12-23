@@ -6,16 +6,9 @@ if (n > 3):
 elif (n < 3):
     raise Exception("Too less args!");
 else:
-    template = r'// ' + sys.argv[1] + r'''
-#include <bits/stdc++.h>
-using namespace std;
-#define int long long
-
-signed main() {
-    
-    return 0;
-}
-'''
+    templateFile = open("./template.cpp")
+    template = templateFile.read()
+    print(template)
     type = sys.argv[2]
     link = sys.argv[1]
     i = -1

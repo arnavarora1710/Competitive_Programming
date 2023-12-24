@@ -1,0 +1,9 @@
+Pragmas (to put at the top of your code):
+
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx,avx2,fma")
+#pragma GCC optimization("unroll-loops")
+
+Input IO: 
+
+ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);

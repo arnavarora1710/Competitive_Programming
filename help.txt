@@ -1,0 +1,14 @@
+1: Eliminate obvious cases, and see if you can simplify the problem.
+- simple cases and make observations like "this cant work"
+
+2: Ignore unnecessary information, and use it to draw the problem in new ways.
+- eg. : min(n, k) when k is too large and n is manageable
+
+3: Making obvious lower and upper bounds, and proving they are constructible.
+- answer must at least be this or can at most be this
+
+4: Finding invariants.
+- by the invariant, this holds
+
+5: Define something that cannot change much.
+- make an invariant

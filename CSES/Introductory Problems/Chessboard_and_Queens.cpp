@@ -13,15 +13,6 @@ bool valid(int i, int j) {
     return i >= 0 && j >= 0 && i < 8 && j < 8;
 }
 
-void printGrid(vector<vector<char>> grid) {
-    for (int i = 0; i < 8; ++i) {
-        for (int j = 0; j < 8; ++j) {
-            cerr << grid[i][j];
-        }
-        cerr << endl;
-    }
-}
-
 bool check(vector<vector<char>> grid) {
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {

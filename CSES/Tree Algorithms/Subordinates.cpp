@@ -11,7 +11,7 @@ const int maxn = 200005;
 int n, x, ans[maxn], vis[maxn]; vector<int> adj[maxn];
 
 int dfs(int nn) {
-    if (vis[nn]) return 0; vis[nn] = true;
+    vis[nn] = true;
     for (auto& xx : adj[nn]) if (!vis[xx]) ans[nn] += 1 + dfs(xx);
     return ans[nn];
 }

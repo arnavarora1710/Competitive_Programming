@@ -8,18 +8,16 @@ using namespace std;
 #define int long long
 #define MULTI_TEST (0)
 const int maxn = 200005;
-int n, x, ans[maxn], vis[maxn]; vector<int> adj[maxn];
+int n, x, ans[maxn]; vector<int> adj[maxn];
 
-int dfs(int nn) {
-    vis[nn] = true;
-    for (auto& xx : adj[nn]) if (!vis[xx]) ans[nn] += 1 + dfs(xx);
-    return ans[nn];
+void dfs(int nn, int pp) {
+    ans[nn] = 1; for (auto& xx : adj[nn]) if (xx != pp) dfs(xx, nn), ans[nn] += ans[xx];
 }
 
 void solve() {
     cin >> n;
     for (int i = 2; i <= n; ++i) cin >> x, adj[i].push_back(x), adj[x].push_back(i);
-    dfs(1); for (int i = 1; i <= n; ++i) cout << ans[i] << " ";
+    dfs(1, -1); for (int i = 1; i <= n; ++i) cout << ans[i] - 1 << " ";
 }
 
 signed main() {

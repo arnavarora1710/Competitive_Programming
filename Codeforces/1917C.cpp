@@ -1,3 +1,4 @@
+// https://codeforces.com/problemset/problem/1917/C
 #pragma GCC optimize("Ofast")
 #pragma GCC target("avx,avx2,fma")
 #pragma GCC optimization("unroll-loops")

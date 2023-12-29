@@ -8,36 +8,34 @@ using namespace std;
 #define int long long
 #define lld long double
 #define MULTI_TEST (0)
-int n, a[200005]; lld b[200005];
+int n, a[200005];
 
-lld mcs() {
-    lld mx = 0, now = 0;
+lld f(lld m) {
+    lld mx = 0, mx1 = 0, now = 0;
     for (int i = 0; i < n; ++i) {
-        now += b[i];
+        now += a[i] - m;
         if (now > mx) mx = now;
         if (now < 0) now = 0;
     }
-    return mx;
-}
-
-void f(lld m, lld& c1, lld& c2) {
-    for (int i = 0; i < n; ++i) b[i] = a[i] - m;
-    c1 = mcs();
-    for (int i = 0; i < n; ++i) b[i] *= -1;
-    c2 = mcs();
+    now = 0;
+    for (int i = 0; i < n; ++i) {
+        now += m - a[i];
+        if (now > mx1) mx1 = now;
+        if (now < 0) now = 0;
+    }
+    return max(mx, mx1);
 }
 
 void solve() {
     cin >> n; for (int i = 0; i < n; ++i) cin >> a[i];
-    lld l = *min_element(a, a + n) - 1, r = *max_element(a, a + n) + 1;
+    lld l = -10001, r = 10001;
     while (r - l > 1e-13) {
-        lld m = l + (r - l) / 2, c1, c2;
-        f(m, c1, c2);
-        if (c1 > c2) l = m;
-        else r = m;
+        lld m1 = l + (r - l) / 3;
+        lld m2 = r - (r - l) / 3;
+        if (f(m1) > f(m2)) l = m1;
+        else r = m2;
     }
-    lld m = l + (r - l) / 2, c1, c2; f(m, c1, c2);
-    cout << fixed << setprecision(12) << max(c1, c2) << endl;
+    cout << fixed << setprecision(12) << f(l) << endl;
 }
 
 signed main() {

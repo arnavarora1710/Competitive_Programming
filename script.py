@@ -29,6 +29,7 @@ else:
                     idx = i
             i-=1
         i+=2
+    template = '// ' + link + '\n' + template
     problemNumber = link[i:idx]
     problemLetter = link[-1]
     if (link[-1] >= '0' and link[-1] <= '9'):

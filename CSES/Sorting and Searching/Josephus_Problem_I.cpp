@@ -11,10 +11,9 @@ int n;
 
 void solve() {
     cin >> n;
-    for (int i = 2; i <= n; i += 2) cout << i << " ";
-    set<int> s; for (int i = 1; i <= n; i += 2) s.insert(i);
+    set<int> s; for (int i = 1; i <= n; ++i) s.insert(i);
     set<int>::iterator it = s.begin();
-    if (!(n&1)) advance(it, 1);
+    advance(it, 1);
     while (s.size() != 1) {
         cout << *it << " ";
         auto it1 = it;

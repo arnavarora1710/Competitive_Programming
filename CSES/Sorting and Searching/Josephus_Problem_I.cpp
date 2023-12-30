@@ -22,7 +22,7 @@ void solve() {
         else advance(it, 2);
         s.erase(it1);
     }
-    cout << *s.rbegin() << endl;
+    cout << *s.rbegin();
 }
 
 signed main() {

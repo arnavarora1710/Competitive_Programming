@@ -1,5 +1,4 @@
 #pragma GCC optimize("Ofast")
-#pragma GCC target("avx,avx2,fma")
 #pragma GCC optimization("unroll-loops")
 
 #include <bits/stdc++.h>
@@ -11,10 +10,9 @@ int n, x, a[200005];
 
 void solve() {
     cin >> n; for (int i = 0; i < n; ++i) cin >> x, a[x] = i;
-    int ans = 1, p = 1;
+    int ans = 1;
     for (int i = 2; i <= n; ++i) {
-        if (a[i] < a[p]) ans++;
-        p = i;
+        if (a[i] < a[i - 1]) ans++;
     }
     cout << ans;
 }

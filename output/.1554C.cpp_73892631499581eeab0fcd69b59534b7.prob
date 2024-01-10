@@ -1,0 +1,1 @@
+{"name":"Local: 1554C","url":"/Users/arnav/Documents/Competitive Programming/Codeforces/1554C.cpp","tests":[{"id":1704902729060,"input":"5\n3 5\n4 6\n3 2\n69 696\n123456 654321","output":"4\n3\n0\n640\n530866"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/arnav/Documents/Competitive Programming/Codeforces/1554C.cpp","group":"local","local":true}

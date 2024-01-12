@@ -1,1 +1,0 @@
-{"name":"Local: 104757B","url":"/Users/arnav/Documents/Competitive Programming/Codeforces/104757B.cpp","tests":[{"id":1704850378849,"input":"4 4 2 3\n0.5 1.0 3.0 3.5\n1.0 2.5 3.0 3.5","output":"18.866666667"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/arnav/Documents/Competitive Programming/Codeforces/104757B.cpp","group":"local","local":true}

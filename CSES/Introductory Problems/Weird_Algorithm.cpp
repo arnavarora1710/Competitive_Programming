@@ -1,10 +1,15 @@
+// Author: Arnav Arora
+// It is ok to share my code anonymously for educational purposes
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-    // take in input
     // n may turn into a large number so use longs
-    long n; cin >> n; 
+    long n; 
+    
+    // take in input
+    cin >> n; 
 
     // print out the initial value
     cout << n << " ";

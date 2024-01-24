@@ -29,12 +29,22 @@ else:
                     idx = i
             i-=1
         i+=2
+    elif type == 'g':
+        while cnt != 3:
+            if (link[i] == '/'):
+                cnt+=1
+                if cnt == 2:
+                    idx = i
+            i-=1
+        i+=2
     template = '// ' + link + '\n' + template
     problemNumber = link[i:idx]
     problemLetter = link[-1]
     if (link[-1] >= '0' and link[-1] <= '9'):
         problemLetter = link[-2] + link[-1]
     filepath = './Codeforces/' + problemNumber + problemLetter + '.cpp'
+    if type == 'g':
+        filepath = './Codeforces/Gym/' + problemNumber + problemLetter + '.cpp'
     file = open(filepath, 'w')
     file.write(template)
     file.close()

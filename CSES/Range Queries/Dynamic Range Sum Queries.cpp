@@ -7,7 +7,7 @@ using namespace std;
 #define int long long
 #define MULTI_TEST (0)
 const int maxn = 200005;
-int n, q, q1, q2, type, a[maxn], seg[5*maxn];
+int n, q, q1, q2, type, a[maxn], seg[4*maxn];
 
 void build(int v, int ll, int rr) {
     if (ll == rr) seg[v] = a[ll]; 

@@ -18,4 +18,6 @@ signed main() {
     int t = 1;
     if (MULTI_TEST) cin >> t;
     while (t--) solve();
+
+    return 0;
 }

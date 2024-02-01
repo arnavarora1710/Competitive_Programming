@@ -22,6 +22,7 @@ struct seg {
     void push(int v) {
         lz[v<<1] += lz[v];
         lz[v<<1|1] += lz[v];
+        tr[v] += lz[v];
         lz[v] = 0; 
     }
 
@@ -34,7 +35,7 @@ struct seg {
         else if (l == ll && r == rr) return lz[v] + tr[v];
         else {
             int mm = ll + (rr - ll) / 2;
-            push(v);
+            if (lz[v]) push(v);
             int left = rmq(v<<1, ll, mm, l, min(mm, r));
             int right = rmq(v<<1|1, mm + 1, rr, max(mm + 1, l), r);
             pull(v);
@@ -47,7 +48,7 @@ struct seg {
         else if (l == ll && r == rr) lz[v] += val;
         else {
             int mm = ll + (rr - ll) / 2;
-            push(v);
+            if (lz[v]) push(v);
             update(v<<1, ll, mm, val, l, min(mm, r));
             update(v<<1|1, mm + 1, rr, val, max(mm + 1, l), r);
             pull(v);

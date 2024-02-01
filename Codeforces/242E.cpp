@@ -65,8 +65,7 @@ void push(int v, int l, int r) {
 llong query(int v, int ll, int rr, int l, int r) {
     push(v, ll, rr);
     if (rr < l || r < ll) return 0;
-    if (ll == rr) return tr[v].sum;
-    else if (l <= ll && rr <= r) return tr[v].sum;
+    if (l <= ll && rr <= r) return tr[v].sum;
     else {
         int mm = ll + (rr - ll) / 2;
         llong left = query(v<<1, ll, mm, l, r);
@@ -78,10 +77,7 @@ llong query(int v, int ll, int rr, int l, int r) {
 void update(int v, int ll, int rr, int val, int l, int r) {
     push(v, ll, rr);
     if (rr < l || r < ll) return;
-    if (ll == rr) {
-        lz[v] ^= val;
-        push(v, ll, rr);
-    } else if (l <= ll && rr <= r) {
+    if (l <= ll && rr <= r) {
         lz[v] ^= val;
         push(v, ll, rr);
     } else {

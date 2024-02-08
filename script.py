@@ -1,4 +1,4 @@
-import sys, os, subprocess
+import sys, subprocess
 
 n = len(sys.argv)
 if (n > 3):

@@ -34,7 +34,7 @@ vector<int> lz;
 
 void build(int v, int ll, int rr) {
     if (ll == rr) tr[v] = *(new Pair(a[ll]));
-    else {
+    else{
         int mm = ll + (rr - ll) / 2;
         build(v<<1, ll, mm);
         build(v<<1|1, mm + 1, rr);

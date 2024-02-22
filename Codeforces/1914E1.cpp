@@ -12,7 +12,7 @@ typedef pair<int, int> pi;
 #define MULTI_TEST (1)
 const int maxn = 2e5 + 5;
 int n, aa, bb;
-pi a[maxn];
+pi a[maxn], b[maxn];
 
 void solve() {
     cin >> n;
@@ -21,15 +21,14 @@ void solve() {
     int score = 0;
     for (int i = 0; i < n; ++i)
         score += a[i].s - a[i].f;
-    vector<pi> c;
     for (int i = 0; i < n; ++i)
-        c.push_back({a[i].f + a[i].s - 2, i});
-    sort(c.begin(), c.end());
-    reverse(c.begin(), c.end());
+        b[i] = {a[i].f + a[i].s, i};
+    sort(b, b + n);
+    reverse(b, b + n);
     for (int i = 0; i < n; ++i) {
         bool bob = i&1;
-        if (bob) score += 1 - a[c[i].s].s;
-        else score += a[c[i].s].f - 1;
+        if (bob) score += 1 - a[b[i].s].s;
+        else score += a[b[i].s].f - 1;
     }
     cout << score << endl;
 }

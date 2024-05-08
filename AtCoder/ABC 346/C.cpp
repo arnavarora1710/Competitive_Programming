@@ -8,12 +8,21 @@ using namespace std;
 typedef pair<int, int> pi;
 #define f first
 #define s second
-#define MULTI_TEST (1)
-const int maxn = 2e5 + 5, inf = 1e18;
-int n, a[maxn];
+#define MULTI_TEST (0)
+int n, k, a[200005];
 
 void solve() {
-    
+    cin >> n >> k;
+    for (int i = 0; i < n; ++i) cin >> a[i];
+    int sum = (k * (k + 1)) / 2;
+    map<int, int> done;
+    for (int i = 0; i < n; ++i) {
+        if (!done[a[i]] && a[i] <= k) {
+            done[a[i]] = 1;
+            sum -= a[i];
+        }
+    }
+    cout << sum;
 }
 
 signed main() {

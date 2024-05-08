@@ -5,15 +5,21 @@
 using namespace std;
 
 #define int long long
-typedef pair<int, int> pi;
-#define f first
-#define s second
 #define MULTI_TEST (1)
-const int maxn = 2e5 + 5, inf = 1e18;
-int n, a[maxn];
+int n;
 
 void solve() {
-    
+    cin >> n;
+    vector<int> a(n);
+    int num = 1;
+    for (int i = 0; i < n; i+=2) {
+        a[i] = num; num++;
+    }
+    for (int i = 1; i < n; i += 2) {
+        a[i] = num; num++;
+    }
+    for (int i = 0; i < n; ++i) cout << a[i] << " ";
+    cout << endl;
 }
 
 signed main() {

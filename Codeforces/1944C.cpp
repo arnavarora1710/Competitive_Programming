@@ -1,4 +1,4 @@
-// https://codeforces.com/problemset/problem/1931/D
+// https://codeforces.com/contest/1944/problem/C
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -10,19 +10,23 @@ typedef pair<int, int> pi;
 #define f first
 #define s second
 #define MULTI_TEST (1)
-int n, x, y, a[200005];
-map<pi, int> m;
+const int inf = 1e18;
+int n, a[200005], cnt[200005];
+vector<int> ones;
 
 void solve() {
-    cin >> n >> x >> y;
+    cin >> n;
     for (int i = 0; i < n; ++i) cin >> a[i];
-    m.clear();
-    int cnt = 0;
+    sort(a, a + n); memset(cnt, 0, sizeof(cnt));
+    ones.clear();
+    for (int i = 0; i < n; ++i) cnt[a[i]]++;
+    int id = inf;
     for (int i = 0; i < n; ++i) {
-        cnt += m[{(x - a[i] % x) % x, a[i] % y}];
-        m[{a[i] % x, a[i] % y}]++;
+        if (cnt[i] == 1) ones.push_back(i);
+        else if (cnt[i] == 0) id = min(id, i);
     }
-    cout << cnt << endl;
+    if (ones.size() >= 2) cout << min(id, ones[1]) << endl;
+    else cout << (id == inf ? n : id) << endl;
 }
 
 signed main() {

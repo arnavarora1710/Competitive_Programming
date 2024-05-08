@@ -1,4 +1,4 @@
-// https://codeforces.com/contest/1927/problem/D
+// https://codeforces.com/problemset/problem/1927/D
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -6,23 +6,27 @@
 using namespace std;
 
 #define int long long
+typedef pair<int, int> pi;
+#define f first
+#define s second
 #define MULTI_TEST (1)
-const int maxn = 200005;
-int n, q, l, r, a[maxn], m[maxn];
+int n, q, l, r, a[200005], lookup[200005];
 
 void solve() {
-    cin >> n; for (int i = 0; i < n; ++i) cin >> a[i];
-    for (int i = 0; i < n; ++i) {
-        int j = i;
-        while (j < n && a[i] == a[j])
-            m[j++] = i - 1;
-        i = j - 1;
+    cin >> n;
+    for (int i = 0; i < n; ++i) cin >> a[i];
+    lookup[0] = -1;
+    for (int i = 1; i < n; ++i) {
+        if (a[i] != a[i - 1]) lookup[i] = i - 1;
+        else if (lookup[i - 1] == -1) lookup[i] = -1;
+        else lookup[i] = lookup[i - 1];
     }
     cin >> q;
-    while (q--) {
+    for (int i = 0; i < q; ++i) {
         cin >> l >> r;
-        l--; r--;
-        if (m[r] >= l) cout << m[r] + 1 << " " << r + 1 << endl;
+        --l, --r;
+        if (lookup[r] != -1 && lookup[r] >= l)
+            cout << lookup[r] + 1 << " " << r + 1 << endl;
         else cout << -1 << " " << -1 << endl;
     }
     cout << endl;

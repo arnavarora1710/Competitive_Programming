@@ -1,3 +1,4 @@
+// https://codeforces.com/contest/1951/problem/A
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -11,8 +12,10 @@ typedef pair<int, int> pi;
 #define MULTI_TEST (1)
 const int maxn = 2e5 + 5, inf = 1e18;
 int n, a[maxn];
+string s;
 
 void solve() {
+    cin >> n >> s;
     
 }
 

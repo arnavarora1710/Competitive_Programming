@@ -5,15 +5,11 @@
 using namespace std;
 
 #define int long long
-typedef pair<int, int> pi;
-#define f first
-#define s second
-#define MULTI_TEST (1)
-const int maxn = 2e5 + 5, inf = 1e18;
-int n, a[maxn];
+#define MULTI_TEST (0)
 
 void solve() {
-    
+    int a, b; cin >> a >> b;
+    cout << (a + b - 1 < 0 ? 9 : a + b - 1);
 }
 
 signed main() {

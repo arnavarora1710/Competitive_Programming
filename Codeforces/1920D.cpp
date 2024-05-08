@@ -1,4 +1,4 @@
-// https://codeforces.com/problemset/problem/1931/D
+// https://codeforces.com/contest/1920/problem/D
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -6,23 +6,22 @@
 using namespace std;
 
 #define int long long
-typedef pair<int, int> pi;
-#define f first
-#define s second
 #define MULTI_TEST (1)
-int n, x, y, a[200005];
-map<pi, int> m;
+int n, q, b, x, k;
 
 void solve() {
-    cin >> n >> x >> y;
-    for (int i = 0; i < n; ++i) cin >> a[i];
-    m.clear();
-    int cnt = 0;
+    cin >> n >> q;
+    int sz = 0; vector<pair<int, int>> a;
     for (int i = 0; i < n; ++i) {
-        cnt += m[{(x - a[i] % x) % x, a[i] % y}];
-        m[{a[i] % x, a[i] % y}]++;
+        cin >> b >> x;
+        if (b == 1) {
+            sz++;
+            a.push_back({x, sz});
+        } else {
+            sz *= (x + 1);
+        }
     }
-    cout << cnt << endl;
+    for (int i = 0; i < q; ++i) cin >> k;
 }
 
 signed main() {

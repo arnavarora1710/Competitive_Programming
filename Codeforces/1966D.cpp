@@ -1,3 +1,4 @@
+// https://codeforces.com/contest/1966/problem/D
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 

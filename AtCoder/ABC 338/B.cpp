@@ -4,16 +4,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define int long long
-typedef pair<int, int> pi;
-#define f first
-#define s second
-#define MULTI_TEST (1)
-const int maxn = 2e5 + 5, inf = 1e18;
-int n, a[maxn];
+#define MULTI_TEST (0)
+string a;
 
 void solve() {
-    
+    cin >> a; map<char, int> m;
+    for (int i = 0; i < a.size(); ++i) m[a[i]]++;
+    int mx = 0; char ch;
+    for (auto& v : m) {
+        if (v.second > mx) {
+            mx = v.second;
+            ch = v.first;
+        }
+    }
+    cout << ch;
 }
 
 signed main() {

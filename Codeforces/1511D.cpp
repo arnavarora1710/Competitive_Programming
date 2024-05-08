@@ -1,3 +1,4 @@
+// https://codeforces.com/problemset/problem/1511/D
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -8,12 +9,25 @@ using namespace std;
 typedef pair<int, int> pi;
 #define f first
 #define s second
-#define MULTI_TEST (1)
-const int maxn = 2e5 + 5, inf = 1e18;
-int n, a[maxn];
+#define MULTI_TEST (0)
+int n, k, cnt[26];
+vector<int> ord;
+
+void dfs(int v) {
+    while (cnt[v] < k) {
+        int u = cnt[v]++;
+        dfs(u);
+        ord.push_back(u);
+    }
+}
 
 void solve() {
-    
+    cin >> n >> k;
+    dfs(0);
+    cout << "a";
+    int kk = ord.size();
+    for (int i = 0; i < n - 1; ++i) 
+        cout << (char) (ord[i % kk] + 'a'); 
 }
 
 signed main() {

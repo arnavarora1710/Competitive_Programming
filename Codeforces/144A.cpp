@@ -1,4 +1,4 @@
-// https://codeforces.com/problemset/problem/1931/D
+// https://codeforces.com/problemset/problem/144/A
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -9,20 +9,20 @@ using namespace std;
 typedef pair<int, int> pi;
 #define f first
 #define s second
-#define MULTI_TEST (1)
-int n, x, y, a[200005];
-map<pi, int> m;
+#define MULTI_TEST (0)
+int n, a[105];
 
 void solve() {
-    cin >> n >> x >> y;
+    cin >> n;
     for (int i = 0; i < n; ++i) cin >> a[i];
-    m.clear();
-    int cnt = 0;
+    int mn = INT_MAX, mx = INT_MIN, id1 = -1, id2 = -1;
     for (int i = 0; i < n; ++i) {
-        cnt += m[{(x - a[i] % x) % x, a[i] % y}];
-        m[{a[i] % x, a[i] % y}]++;
+        if (mn >= a[i]) mn = a[i], id1 = i;
+        if (mx < a[i]) mx = a[i], id2 = i;
     }
-    cout << cnt << endl;
+    if (id2 > id1) cout << (n - id1 - 1) + id2 - 1 << endl;
+    else if (id1 == id2) cout << 0 << endl;
+    else cout << id2 + (n - id1 - 1) << endl;
 }
 
 signed main() {

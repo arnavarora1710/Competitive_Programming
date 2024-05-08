@@ -1,3 +1,4 @@
+// https://codeforces.com/contest/1932/problem/E
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -5,14 +6,11 @@
 using namespace std;
 
 #define int long long
-typedef pair<int, int> pi;
-#define f first
-#define s second
 #define MULTI_TEST (1)
-const int maxn = 2e5 + 5, inf = 1e18;
-int n, a[maxn];
+int n; string a;
 
 void solve() {
+    cin >> n >> a;
     
 }
 

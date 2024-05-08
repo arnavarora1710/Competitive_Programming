@@ -1,3 +1,4 @@
+// https://codeforces.com/contest/1956/problem/D
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -13,7 +14,14 @@ const int maxn = 2e5 + 5, inf = 1e18;
 int n, a[maxn];
 
 void solve() {
-    
+    cin >> n; for (int i = 0; i < n; ++i) cin >> a[i];
+    map<int, int> cnt;
+    for (int i = 0; i < n; ++i) cnt[a[i]]++;
+    int ans = 0;
+    for (auto v : cnt) {
+        if (v.s == 2) ans++;
+    }
+    cout << ans << endl;
 }
 
 signed main() {

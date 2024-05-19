@@ -28,19 +28,14 @@ void solve() {
             }
             cnt[i] = 0;
         }
-        int k = 0;
+        int tot = 0, mx = 0;
         for (int i = 0; i < n / 2; ++i) {
             if (s[i] == s[n - i - 1]) {
-                k++; cnt[s[i] - 'a']++;
+                tot++; cnt[s[i] - 'a']++;
             }
         }
-        for (int i = 0; i < 26; ++i) {
-            if (cnt[i] * 2 > k) {
-                cout << cnt[i] << '\n';
-                return;
-            }
-        }
-        cout << (k + 1) / 2 << '\n';
+        for (int i = 0; i < 26; ++i) mx = max(mx, cnt[i]);
+        cout << max(mx, (tot + 1) / 2) << '\n';
     }
 }
 

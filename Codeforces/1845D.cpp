@@ -15,14 +15,16 @@ const int maxn = 3e5 + 5, inf = 1e18;
 int n, a[maxn];
 
 void solve() {
-    cin >> n; for (int i = 0; i < n; ++i) cin >> a[i];
-    int cur = 0, ans = 0, mx = 0, mn = 0;
-    for (int i = 0; i < n; ++i) {
-        cur += a[i];
-        mx = max(mx, cur);
-        if (cur - mx < mn) {
-            mn = cur - mx;
-            ans = mx;
+    cin >> n; for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i) a[i] += a[i - 1];
+    vector<int> suf(n + 1); suf[n] = a[n];
+    for (int i = n - 1; i >= 0; --i)
+        suf[i] = min(suf[i + 1], a[i]);
+    int ans = 0, mx = -1;
+    for (int i = 0; i <= n; ++i) {
+        if (a[i] - suf[i] > mx) {
+            mx = a[i] - suf[i];
+            ans = a[i];
         }
     }
     cout << ans << '\n';

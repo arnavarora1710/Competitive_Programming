@@ -35,11 +35,9 @@ void solve() {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-    for (int i = 0; i < trash; ++i) {
-        cin >> x;
-        if (dfs(x, -1, 1)) cout << "Ron\n";
-        else cout << "Hermione\n";
-    }
+    cin >> x;
+    if (dfs(x, -1, 1)) cout << "Ron\n";
+    else cout << "Hermione\n";
 }
 
 signed main () {

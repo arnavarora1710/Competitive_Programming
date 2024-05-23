@@ -17,11 +17,11 @@ vector<int> adj[maxn];
 
 bool dfs(int nn, int pp, bool ron) {
     bool ok = !ron;
-    for (int cc : adj[nn]) {
+    for (auto& cc : adj[nn]) {
         if (cc != pp) {
             bool ret = dfs(cc, nn, !ron);
-            if (ron) ok |= ret;
-            else ok &= ret;
+            if (ron && ret) return true;
+            else if (!ron && !ret) return false;
         }
     }
     return ok;
@@ -35,9 +35,11 @@ void solve() {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-    cin >> x;
-    if (dfs(x, -1, 1)) cout << "Ron";
-    else cout << "Hermione";
+    for (int i = 0; i < trash; ++i) {
+        cin >> x;
+        if (dfs(x, -1, 1)) cout << "Ron\n";
+        else cout << "Hermione\n";
+    }
 }
 
 signed main () {

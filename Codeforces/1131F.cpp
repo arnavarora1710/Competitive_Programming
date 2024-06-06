@@ -54,12 +54,6 @@ void solve() {
         if (adj[x].size() >= adj[y].size()) adj[x].splice(adj[x].end(), adj[y]);
         else adj[y].splice(adj[y].end(), adj[x]);
         dsu.unionBySize(x, y);
-        // for (int j = 1; j <= n; ++j) {
-        //     cerr << j << ':';
-        //     for (int k : adj[j]) cerr << k << ' ';
-        //     cerr << '\n';
-        // }
-        // cerr << '\n';
     }
     for (int i = 1; i <= n; ++i) {
         if (adj[i].empty()) continue;

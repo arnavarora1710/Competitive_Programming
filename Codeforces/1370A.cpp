@@ -16,7 +16,6 @@ int n, a[maxn];
 
 void solve() {
     cin >> n;
-    n -= n&1;
     cout << (n >> 1) << '\n';
 }
 

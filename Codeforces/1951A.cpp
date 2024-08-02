@@ -9,14 +9,25 @@ using namespace std;
 typedef pair<int, int> pi;
 #define f first
 #define s second
+#define mp make_pair
 #define MULTI_TEST (1)
 const int maxn = 2e5 + 5, inf = 1e18;
-int n, a[maxn];
-string s;
+int n; string s;
 
 void solve() {
     cin >> n >> s;
-    
+    int cnt = 0;
+    for (auto& x : s) 
+        cnt += (x == '1');
+    if (cnt&1) cout << "NO\n";
+    else if (cnt == 2) {
+        for (int i = 0; i < n; ++i) {
+            if (s[i] == '1') {
+                cout << (s[i + 1] == '1' ? "NO\n" : "YES\n");
+                return;
+            } 
+        }
+    } else cout << "YES\n";
 }
 
 signed main() {

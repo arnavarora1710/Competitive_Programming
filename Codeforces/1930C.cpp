@@ -1,3 +1,4 @@
+// https://codeforces.com/contest/1930/problem/C
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -5,51 +6,37 @@
 using namespace std;
 
 #define int long long
+typedef pair<int, int> pi;
 #define f first
 #define s second
+#define mp make_pair
 #define MULTI_TEST (1)
-const int maxn = 300005;
-int n, a[maxn], diff[maxn];
-map<int, vector<int>> dups;
+const int maxn = 3e5 + 5, inf = 1e18;
+int n, a[maxn];
 
 void solve() {
-    cin >> n; for (int i = 0; i < n; ++i) cin >> a[i];
-    dups.clear();
-    if (n == 1) {
-        cout << a[0] + 1 << endl;
-    } else {
-        for (int i = 0; i < n; ++i) {
-            a[i] += i + 1;
-            dups[a[i]].push_back(i);
-        } 
-
-        int mx = *max_element(a, a + n);
-        int smx = -1;
-        for (int i = 0; i < n; ++i) {
-            if (a[i] > smx && a[i] != mx) smx = a[i];
-        }
-        if (smx == -1) {
-            cout << a[0] << " ";
-            for (int i = 1; i < n; ++i) {
-                a[i] -= i;   
-                cout << a[i] << " ";
+    cin >> n;
+    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i) a[i] += i;
+    sort(a + 1, a + n + 1);
+    set<int> b, m;
+    for (int i = 1; i <= n; ++i) {
+        if (a[i] == a[i - 1]) {
+            b.erase(a[i - 1]);
+            a[i - 1] = *(m.rbegin());
+            m.erase(*(m.rbegin()));
+            b.insert(a[i - 1]);
+            if (b.find(a[i - 1] - 1) == b.end()) {
+                m.insert(a[i - 1] - 1);
             }
-            cout << endl;
-        } else {
-            if (dups[smx][0] < dups[mx][0]) smx = mx;
-            for (int i = 0; i < n; ++i)
-                diff[i] = (a[i] - (i ? a[i - 1] : 0));
-            diff[dups[smx][0] + 1]--;
-            for (int i = 1; i < n; ++i) diff[i] += diff[i - 1];
-
-            set<int> ss(diff, diff + n);
-            vector<int> ans(ss.begin(), ss.end());
-            reverse(ans.begin(), ans.end());
-
-            for (int i = 0; i < ans.size(); ++i) cout << ans[i] << " ";
-            cout << endl;
         }
+        if (b.find(a[i] - 1) == b.end())
+            m.insert(a[i] - 1);
+        b.insert(a[i]);
     }
+    sort(a + 1, a + n + 1);
+    for (int i = n; i; --i) cout << a[i] << ' ';
+    cout << '\n';
 }
 
 signed main() {

@@ -6,55 +6,43 @@
 using namespace std;
 
 #define int long long
+typedef pair<int, int> pi;
+#define f first
+#define s second
+#define mp make_pair
 #define MULTI_TEST (1)
-int n, m, d;
+const int maxn = 2e5 + 5, inf = 1e18;
+int n, m;
 
 int ask(int x, int y) {
-    printf("? %lld %lld\n", x, y);
-    fflush(stdout);
-    scanf("%lld", &d);
-    return d;
+    cout << "? " << x << " " << y << endl;
+    int res; cin >> res;
+    return res;
+}
+
+void submit(int x, int y) {
+    cout << "! " << x << " " << y << endl;
 }
 
 void solve() {
-    scanf("%lld %lld", &n, &m);
-
-    int q1 = ask(1, 1);
-    int q2, q3, q4;
-    if (q1 + 1 <= n) q2 = ask(q1 + 1, 1);
-    else q2 = ask(n, q1 - n + 2);
-    if (q1 + 1 <= n) q3 = ask(1, q1 + 1);
-    else {
-        int xx;
-        if (n - 1 < m - (q1 - n + 2)) xx = n - 1;
-        else xx = m - (q1 - n + 2);
-        q3 = ask(n - xx, q1 - n + 2 + xx);
-    }
-    if (q1 + 1 <= n) q4 = ask(q1 + 1 - q2/2, 1 + q2/2);
-    else q4 = ask(n - q2/2, q1 - n + 2 + q2/2);
-    
-    if (q4 == 0) {
-        if (q1 + 1 <= n)
-            printf("! %lld %lld\n", q1 + 1 - q2/2, 1 + q2/2);
-        else 
-            printf("! %lld %lld\n", n - q2/2, q1 - n + 2 + q2/2); 
-    }
-    else {
-        if (q1 + 1 <= n)
-            printf("! %lld %lld\n", q1 + 1 - q3/2, 1 + q3/2);
-        else {
-            int xx;
-            if (n - 1 < m - (q1 - n + 2)) xx = n - 1;
-            else xx = m - (q1 - n + 2);
-            printf("! %lld %lld\n", n - xx - q3/2, q1 - n + 2 + xx + q3/2); 
-        }
-    }
-    fflush(stdout);
+    cin >> n >> m;
+    int tl = ask(1, 1);
+    int L = max(1LL, tl + 2 - m);
+    int e1 = ask(L, tl + 2 - L);
+    int R = max(1LL, tl + 2 - n);
+    int e2 = ask(tl + 2 - R, R);
+    if (ask(L + e1 / 2, tl + 2 - L - e1 / 2) == 0)
+        submit(L + e1 / 2, tl + 2 - L - e1 / 2);
+    else
+        submit(tl + 2 - R - e2 / 2, R + e2 / 2);
 }
 
 signed main() {
+    ios_base::sync_with_stdio(0); 
+    cin.tie(0); cout.tie(0);
+
     int t = 1;
-    if (MULTI_TEST) scanf("%lld", &t);
+    if (MULTI_TEST) cin >> t;
     while (t--) solve();
 
     return 0;

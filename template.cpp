@@ -1,29 +1,32 @@
-#pragma GCC optimize("Ofast")
-#pragma GCC optimization("unroll-loops")
-
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
 using namespace std;
+using namespace __gnu_pbds;
+
+template<class T> using oset = tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update>;
+template<class T> using omset = tree<T, null_type, less_equal<T>, rb_tree_tag,tree_order_statistics_node_update>;
 
 #define int long long
-typedef pair<int, int> pi;
 #define f first
 #define s second
-#define mp make_pair
 #define MULTI_TEST (1)
-const int maxn = 2e5 + 5, inf = 1e18;
-int n, a[maxn];
+
+typedef pair<int, int> pi;
+typedef vector<int> vi;
+typedef vector<vector<int>> vii;
+
+const int N = 200005, INF = 1e18, MOD = 1e9 + 7;
+int n, k, q, x, y, u, v, a[N];
 
 void solve() {
-    
+    cin >> n;
+    for (int i = 0; i < n; ++i) cin >> a[i];
 }
 
 signed main() {
-    ios_base::sync_with_stdio(0); 
-    cin.tie(0); cout.tie(0);
-
-    int t = 1;
-    if (MULTI_TEST) cin >> t;
-    while (t--) solve();
-
-    return 0;
+    ios_base::sync_with_stdio(0); cin.tie(0);
+    int Q = 1; if (MULTI_TEST) cin >> Q;
+    while (Q--) solve();
 }

@@ -14,14 +14,27 @@ typedef pair<int, int> pi;
 const int maxn = 1e5 + 5, inf = 1e18;
 int n;
 
-bool cmp(string& a, string& b) {
-    return a + b < b + a;
-}
+class Compare {
+        public:
+            bool cmp(string& x, string& y, int i, int j) {
+                while (i < x.size() && j < y.size()) {
+                    if (x[i] < y[j]) return 0;
+                    else if (x[i] > y[j]) return 1;
+                    i++, j++;
+                }
+                if (i < x.size()) return cmp(x, y, i, 0);
+                else if (j < y.size()) return cmp(x, y, 0, j);
+                else return 1;
+            }
+            bool operator()(string& x, string& y) {
+                return !cmp(x, y, 0, 0);
+            }
+    };
 
 void solve() {
     cin >> n; vector<string> a(n);
     for (int i = 0; i < n; ++i) cin >> a[i];
-    sort(a.begin(), a.end(), cmp);
+    sort(a.begin(), a.end(), Compare());
     for (string s : a) cout << s;
 }
 

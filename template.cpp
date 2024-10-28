@@ -26,7 +26,9 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 
 typedef pair<int, int> pi;
 typedef vector<int> vi;
-typedef vector<vector<int>> vii;
+typedef vector<pi> vpi;
+typedef vector<vi> vii;
+typedef vector<vpi> vpii;
 typedef priority_queue<int> pqmx;
 typedef priority_queue<int, vi, greater<int>> pqmn;
 

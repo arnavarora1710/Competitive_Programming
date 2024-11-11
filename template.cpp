@@ -38,7 +38,7 @@ int n, k, q, x, y, u, v, a[N];
 
 void solve() {
     cin >> n;
-    rep(i, 1, n) cin >> a[i];
+    rep(i,1,n) cin >> a[i];
 }
 
 signed main() {

@@ -13,6 +13,22 @@
 5: Define something that cannot change much.
 - make an invariant
 
+Figuring out the Nature of an Optimal Solution. One of the most important thing in problems imo.
+
+Solving subtasks of the original problem and then trying to extend/generalize your solution.
+
+Fixing a parameter and then trying to maximise the result with respect to that fixed parameter.
+
+Finding necessary and sufficient conditions. Sometimes, your necessary conditions themselves become sufficient, or vice versa.
+
+Identifying Lower and Upper bounds, and constructing them.
+
+Reducing a problem into smaller subproblems, commonly used with Dynamic Programming or Inductive Proofs.
+
+Considering the Decision Version of the Problem instead. Especially useful in Counting problems, where you need to count number of good subsequences for example.
+
+Formalizing the Problem
+
 When reading the problem statement:
 
 Why is this limitation here? How would the problem change if it is not here?

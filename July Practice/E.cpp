@@ -1,4 +1,3 @@
-// https://codeforces.com/problemset/problem/102/B
 #pragma GCC optimize("Ofast")
 #pragma GCC optimization("unroll-loops")
 
@@ -9,20 +8,17 @@ using namespace std;
 typedef pair<int, int> pi;
 #define f first
 #define s second
-#define MULTI_TEST (0)
+#define mp make_pair
+#define MULTI_TEST (1)
 const int maxn = 2e5 + 5, inf = 1e18;
-string s; 
+int n;
+string s;
 
 void solve() {
-    cin >> s;
-    int ans = 0;
-    while (s.size() != 1) {
-        ans++;
-        int num = 0;
-        for (char c : s) num += (c - '0');
-        s = to_string(num);
-    }
-    cout << ans << endl;
+    cin >> n >> s;
+    int cnt = 0;
+    for (auto& c : s) cnt += (c == 'U');
+    cout << (cnt&1 ? "YES\n" : "NO\n");
 }
 
 signed main() {

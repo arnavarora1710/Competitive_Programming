@@ -2,3 +2,6 @@ CP3/
 output/
 .vscode/
 /Codechef
+/UVA
+/USACO
+.DS_Store

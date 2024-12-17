@@ -8,12 +8,11 @@ template<class T> using oset = tree<T, null_type, less<T>, rb_tree_tag,tree_orde
 template<class T> using omset = tree<T, null_type, less_equal<T>, rb_tree_tag,tree_order_statistics_node_update>;
 #define bug(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
-void __f(const char* name, Arg1&& arg1) { cerr << "\033[1;31m" << name << " : " << arg1 << "\033[0m" << endl; }
+void __f(const char* name, Arg1&& arg1) { cerr << name << " : " << arg1 << endl; }
 template <typename Arg1, typename... Args>
 void __f(const char* names, Arg1&& arg1, Args&&... args) {
     const char* comma = strchr(names + 1, ',');
-    cerr << "\033[1;31m" << string(names, comma - names) << " : " << arg1 << "\033[0m |";
-    __f(comma + 1, args...);
+    cerr.write(names, comma - names) << " : " << arg1 << " |"; __f(comma + 1, args...);
 }
 
 #define int long long
@@ -23,7 +22,7 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 #define db(x, a, b) for (int i = (a); i <= (b); ++i) cerr << x[i] << " "; cerr << '\n'
 #define rep(i, a, b) for (int i = (a); i <= (b); ++i)
 #define repr(i, a, b) for (int i = (a); i >= (b); --i)
-#define MULTI_TEST (1)
+#define MULTI_TEST (0)
 
 typedef pair<int, int> pi;
 typedef vector<int> vi;
@@ -35,18 +34,26 @@ typedef priority_queue<int, vi, greater<int>> pqmn;
 
 const int N = 2e6 + 5, inf = 1e18, mod = 1e9 + 7;
 const double PI = acos(-1), EPS = 1e-9;
-int n, k, q, x, y, u, v, a[N];
+int n, m, k, q, x, y, u, v, a[N], b[N], c[N];
 
 void solve() {
-    cin >> n;
+    cin >> n >> m;
     rep(i,1,n) cin >> a[i];
+    rep(i,1,m) cin >> b[i];
+    rep(i,1,n) {
+        if (!c[a[i]]) {
+            c[a[i]] = i;
+            int j = a[i]+1;
+            while (j < N and !c[j]) c[j++] = c[a[i]];
+        }
+    }
+    rep(i,1,m) {
+        if (c[b[i]]) cout << c[b[i]] << '\n';
+        else cout << -1 << '\n';
+    }
 }
 
 signed main() {
-    #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-    #endif
-
     ios_base::sync_with_stdio(0); cin.tie(0);
     int Q = 1; if (MULTI_TEST) cin >> Q;
     while (Q--) solve();

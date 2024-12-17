@@ -1,3 +1,4 @@
+// http://codeforces.com/contest/2034/problem/E
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -8,12 +9,11 @@ template<class T> using oset = tree<T, null_type, less<T>, rb_tree_tag,tree_orde
 template<class T> using omset = tree<T, null_type, less_equal<T>, rb_tree_tag,tree_order_statistics_node_update>;
 #define bug(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
-void __f(const char* name, Arg1&& arg1) { cerr << "\033[1;31m" << name << " : " << arg1 << "\033[0m" << endl; }
+void __f(const char* name, Arg1&& arg1) { cerr << name << " : " << arg1 << endl; }
 template <typename Arg1, typename... Args>
 void __f(const char* names, Arg1&& arg1, Args&&... args) {
     const char* comma = strchr(names + 1, ',');
-    cerr << "\033[1;31m" << string(names, comma - names) << " : " << arg1 << "\033[0m |";
-    __f(comma + 1, args...);
+    cerr.write(names, comma - names) << " : " << arg1 << " |"; __f(comma + 1, args...);
 }
 
 #define int long long
@@ -38,15 +38,49 @@ const double PI = acos(-1), EPS = 1e-9;
 int n, k, q, x, y, u, v, a[N];
 
 void solve() {
-    cin >> n;
-    rep(i,1,n) cin >> a[i];
+    cin >> n >> k;
+    vii a(k, vi(n));
+    rep(i,0,k-1) {
+        rep(j,0,n-1) {
+            a[i][j] = (j-i+n)%n;
+        }
+    }
+    int cnt = 0, cnt1 = 0;
+    while (1) {
+        if (cnt1 > 10) {
+            cout << "NO\n";
+            return;
+        }
+        set<int> s;
+        rep(i,0,n-1) {
+            int sm = 0;
+            rep(j,0,k-1) {
+                sm += a[j][i];
+            }
+            s.insert(sm);
+        }
+        if (s.size() == 1) {
+            cout << "YES\n";
+            rep(i,0,k-1) {
+                rep(j,0,n-1) cout << a[i][j] + 1 << ' ';
+                cout << '\n';
+            }
+            return;
+        }
+        cnt++;
+        if (cnt > 10) {
+            cnt1++;
+            rep(i,0,k-1)
+                random_shuffle(a[i].begin(), a[i].end());
+            cnt = 0;
+        } else {
+            rep(i,0,k-1)
+                next_permutation(a[i].begin(), a[i].end());
+        }
+    }
 }
 
 signed main() {
-    #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-    #endif
-
     ios_base::sync_with_stdio(0); cin.tie(0);
     int Q = 1; if (MULTI_TEST) cin >> Q;
     while (Q--) solve();

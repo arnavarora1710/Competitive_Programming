@@ -1,3 +1,4 @@
+// http://codeforces.com/contest/2042/problem/A
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -8,12 +9,11 @@ template<class T> using oset = tree<T, null_type, less<T>, rb_tree_tag,tree_orde
 template<class T> using omset = tree<T, null_type, less_equal<T>, rb_tree_tag,tree_order_statistics_node_update>;
 #define bug(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
-void __f(const char* name, Arg1&& arg1) { cerr << "\033[1;31m" << name << " : " << arg1 << "\033[0m" << endl; }
+void __f(const char* name, Arg1&& arg1) { cerr << name << " : " << arg1 << endl; }
 template <typename Arg1, typename... Args>
 void __f(const char* names, Arg1&& arg1, Args&&... args) {
     const char* comma = strchr(names + 1, ',');
-    cerr << "\033[1;31m" << string(names, comma - names) << " : " << arg1 << "\033[0m |";
-    __f(comma + 1, args...);
+    cerr.write(names, comma - names) << " : " << arg1 << " |"; __f(comma + 1, args...);
 }
 
 #define int long long
@@ -38,15 +38,22 @@ const double PI = acos(-1), EPS = 1e-9;
 int n, k, q, x, y, u, v, a[N];
 
 void solve() {
-    cin >> n;
+    cin >> n >> k;
     rep(i,1,n) cin >> a[i];
+    sort(a+1, a+n+1);
+    reverse(a+1, a+n+1);
+    int sum = 0;
+    int ans = inf;
+    rep(i,1,n) {
+        if (sum > k) break;
+        ans = min(ans, k - sum);
+        sum += a[i];
+    }
+    if (sum <= k) ans = min(ans, k - sum);
+    cout << ans << '\n';
 }
 
 signed main() {
-    #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-    #endif
-
     ios_base::sync_with_stdio(0); cin.tie(0);
     int Q = 1; if (MULTI_TEST) cin >> Q;
     while (Q--) solve();

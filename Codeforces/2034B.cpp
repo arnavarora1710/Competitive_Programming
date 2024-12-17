@@ -1,3 +1,4 @@
+// http://codeforces.com/contest/2034/problem/B
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -8,12 +9,11 @@ template<class T> using oset = tree<T, null_type, less<T>, rb_tree_tag,tree_orde
 template<class T> using omset = tree<T, null_type, less_equal<T>, rb_tree_tag,tree_order_statistics_node_update>;
 #define bug(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
-void __f(const char* name, Arg1&& arg1) { cerr << "\033[1;31m" << name << " : " << arg1 << "\033[0m" << endl; }
+void __f(const char* name, Arg1&& arg1) { cerr << name << " : " << arg1 << endl; }
 template <typename Arg1, typename... Args>
 void __f(const char* names, Arg1&& arg1, Args&&... args) {
     const char* comma = strchr(names + 1, ',');
-    cerr << "\033[1;31m" << string(names, comma - names) << " : " << arg1 << "\033[0m |";
-    __f(comma + 1, args...);
+    cerr.write(names, comma - names) << " : " << arg1 << " |"; __f(comma + 1, args...);
 }
 
 #define int long long
@@ -35,18 +35,36 @@ typedef priority_queue<int, vi, greater<int>> pqmn;
 
 const int N = 2e6 + 5, inf = 1e18, mod = 1e9 + 7;
 const double PI = acos(-1), EPS = 1e-9;
-int n, k, q, x, y, u, v, a[N];
+int n, m, k, q, x, y, u, v, a[N];
+string s;
 
 void solve() {
-    cin >> n;
-    rep(i,1,n) cin >> a[i];
+    cin >> n >> m >> k >> s;
+    int ans = 0, cnt = 0, done = 0;
+    bool st = 0;
+    for (int i = 0; i < n; ++i) {
+        // bug(i, ans);
+        if (s[i] == '0') {
+            if (st) {
+                done++;
+                if (done == k) st = false, done = 0;
+            } else {
+                if (cnt + 1 == m) cnt = 0, ans++, st = true, i--;
+                else cnt++;
+            }
+        } else {
+            if (st) {
+                done++;
+                if (done == k) st = false, done = 0;
+            }
+            cnt = 0;
+        }
+        // bug(cnt, done, st);
+    }
+    cout << ans << '\n';
 }
 
 signed main() {
-    #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-    #endif
-
     ios_base::sync_with_stdio(0); cin.tie(0);
     int Q = 1; if (MULTI_TEST) cin >> Q;
     while (Q--) solve();

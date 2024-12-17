@@ -1,3 +1,4 @@
+// http://codeforces.com/contest/2042/problem/B
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -8,12 +9,11 @@ template<class T> using oset = tree<T, null_type, less<T>, rb_tree_tag,tree_orde
 template<class T> using omset = tree<T, null_type, less_equal<T>, rb_tree_tag,tree_order_statistics_node_update>;
 #define bug(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
-void __f(const char* name, Arg1&& arg1) { cerr << "\033[1;31m" << name << " : " << arg1 << "\033[0m" << endl; }
+void __f(const char* name, Arg1&& arg1) { cerr << name << " : " << arg1 << endl; }
 template <typename Arg1, typename... Args>
 void __f(const char* names, Arg1&& arg1, Args&&... args) {
     const char* comma = strchr(names + 1, ',');
-    cerr << "\033[1;31m" << string(names, comma - names) << " : " << arg1 << "\033[0m |";
-    __f(comma + 1, args...);
+    cerr.write(names, comma - names) << " : " << arg1 << " |"; __f(comma + 1, args...);
 }
 
 #define int long long
@@ -40,13 +40,22 @@ int n, k, q, x, y, u, v, a[N];
 void solve() {
     cin >> n;
     rep(i,1,n) cin >> a[i];
+    map<int, int> mp;
+    rep(i,1,n) mp[a[i]]++;
+    int ans = 0;
+    int cnt1 = 0, cnt2 = 0;
+    for (auto& x : mp) {
+        if (x.s > 2) ans++;
+        cnt1 += x.s == 1;
+        cnt2 += x.s == 2;
+    }
+    ans += (cnt1+1)/2 * 2 + cnt2;
+    // int ones = (cnt1+1)/2;
+    // ans += cnt2 + ones + min(cnt1 - ones, cnt2);
+    cout << ans << '\n';
 }
 
 signed main() {
-    #ifndef ONLINE_JUDGE
-        freopen("input.txt", "r", stdin);
-    #endif
-
     ios_base::sync_with_stdio(0); cin.tie(0);
     int Q = 1; if (MULTI_TEST) cin >> Q;
     while (Q--) solve();
